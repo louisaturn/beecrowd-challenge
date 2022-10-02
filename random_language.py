@@ -1,8 +1,9 @@
 # This module picks a random language
 from pathlib import Path
+
 import random
 
-FILES_DIRECTORY = "beecrowd_problems"
+FILES_DIRECTORY = "beecrowd-problems"
 
 LANGUAGES = {
     'C':"c",
@@ -45,3 +46,11 @@ def create_file(problem, language):
 # first problem: 1001
 # create_file("1001", random_language())
 
+def next_problem():
+    filepath = Path(FILES_DIRECTORY).glob("**/*")
+    solutions = [x.stem for x in filepath if x.is_file]
+    last_solution = (max(solutions))
+    new = int(last_solution) + 1
+    return str(new)
+
+create_file(next_problem(), random_language())
