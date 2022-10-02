@@ -38,7 +38,10 @@ def create_file(problem, language):
     filepath.parent.mkdir(parents=True, exist_ok=True)
 
     with filepath.open("w") as f:
-        f.write(f"Solution of {problem} on {language}:")
+        # TODO: comment the text bellow
+        f.write(f"Solution of: {problem} Language: {language}")
         f.close()
 
-create_file("1", random_language())
+# first problem: 1001
+# create_file("1001", random_language())
+
