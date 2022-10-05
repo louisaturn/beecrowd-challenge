@@ -31,7 +31,7 @@ LANGUAGES = {
         'comment': "#"
         },
     'Scala': {
-        'extension':".scala",
+        'extension':"scala",
         'comment': "//"
         },
     'Go': {
@@ -98,20 +98,23 @@ def random_language():
 
 def create_file(problem, language):
 
-    filepath = Path(f"{FILES_DIRECTORY}/{problem}.{LANGUAGES[language]['extension']}")
-    filepath.parent.mkdir(parents=True, exist_ok=True)
+    file_path = Path(f"{FILES_DIRECTORY}/{problem}.{LANGUAGES[language]['extension']}")
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    with filepath.open("w") as f:
-        # TODO: comment for each language on LANGUAGE
-        f.write(f"{LANGUAGES[language]['comment']} Solution of: {problem} Language: {language}")
+    with file_path.open("w") as f:
+        problem_link = f"https://www.beecrowd.com.br/judge/problems/view/{problem}"
+        comment = f"{LANGUAGES[language]['comment']} Solution of: {problem_link} Language: {language}"
+       
+        #close comment line (OCaml)
+        f.write(f"{comment}*)" if language == 'OCaml' else f"{comment}")
         f.close()
 
 def next_problem():
     # look for the last problem solved and create a file for the next solution
 
     if any(Path(FILES_DIRECTORY).iterdir()):
-        filepath = Path(FILES_DIRECTORY).glob("**/*")
-        solutions = [x.stem for x in filepath if x.is_file]
+        file_path = Path(FILES_DIRECTORY).glob("**/*")
+        solutions = [x.stem for x in file_path if x.is_file]
         last_solution = (max(solutions))
         new = int(last_solution) + 1
         return str(new)
