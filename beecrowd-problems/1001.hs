@@ -1,1 +1,0 @@
-Solution of: 1001 Language: Haskell
