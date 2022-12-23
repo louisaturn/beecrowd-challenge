@@ -1,0 +1,1 @@
+-- Solution of: https://www.beecrowd.com.br/judge/problems/view/1010 Language: Lua
